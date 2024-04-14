@@ -6,7 +6,7 @@ public class BgrMove : MonoBehaviour
     void Start()
     {
         rg = GetComponent<Rigidbody2D>();
-        rg.velocity = Vector3.left * (GameManager.instance.speed - 1.5f);
+        rg.velocity = Vector3.left * (GameManager.Instance.speed - 1.5f);
     }
 
     // Update is called once per frame

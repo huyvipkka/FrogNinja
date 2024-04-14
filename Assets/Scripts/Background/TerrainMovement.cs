@@ -6,7 +6,7 @@ public class TerrainMovement : MonoBehaviour
     void Start()
     {
         rg = GetComponent<Rigidbody2D>();
-        rg.velocity = Vector3.left * GameManager.instance.speed;
+        rg.velocity = Vector3.left * GameManager.Instance.speed;
     }
 
     // Update is called once per frame

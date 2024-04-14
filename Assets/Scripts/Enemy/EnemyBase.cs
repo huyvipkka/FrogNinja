@@ -8,7 +8,7 @@ public abstract class EnemyBase : MonoBehaviour
     protected virtual void Start()
     {
         rg = GetComponent<Rigidbody2D>();
-        rg.velocity = Vector2.left * GameManager.instance.speed;
+        rg.velocity = Vector2.left * GameManager.Instance.speed;
     }
 
     // Update is called once per frame
@@ -20,7 +20,7 @@ public abstract class EnemyBase : MonoBehaviour
 
     protected virtual void EnemyMove()
     {
-        transform.position += (GameManager.instance.speed + enemySpeed) * Time.deltaTime * Vector3.left;
+        transform.position += (GameManager.Instance.speed + enemySpeed) * Time.deltaTime * Vector3.left;
     }
 
     protected virtual void DestroyByDis()

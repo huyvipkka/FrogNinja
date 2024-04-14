@@ -3,7 +3,7 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
 
-    public static GameManager instance
+    public static GameManager Instance
     {
         get;
         private set;
@@ -11,10 +11,9 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
-        if (instance == null)
-            instance = this;
-        else
-            Debug.Log("Game mng err");
+        if (Instance != null && Instance != this)
+            Destroy(gameObject);
+        else Instance = this;
         speed = 3;
     }
     public float speed = 3;

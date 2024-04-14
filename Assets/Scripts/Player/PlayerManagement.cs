@@ -2,23 +2,21 @@ using UnityEngine;
 
 public class PlayerManagement : MonoBehaviour
 {
-    public static PlayerManagement instance { get; private set; }
+    public static PlayerManagement Instance { get; private set; }
     public CharState PlayerState = CharState.RUN;
     public Rigidbody2D rb;
     protected Animator ani;
     [Header("Run")]
     [SerializeField] protected float moveSpeed = 10;
-    [SerializeField] protected float acceleration = 7;
-    [SerializeField] protected float deceleration = 7;
     [Header("Jumpping")]
-    float jumpHigh = 15;
+    readonly float jumpHigh = 15;
 
     protected SpriteRenderer spriteRd;
     private void Awake()
     {
-        if (instance != null && instance != this)
+        if (Instance != null && Instance != this)
             Destroy(gameObject);
-        else instance = this;
+        else Instance = this;
     }
 
 
@@ -34,18 +32,14 @@ public class PlayerManagement : MonoBehaviour
     void Update()
     {
         Jump();
+        Move();
         UpdateStateAndAnimation();
     }
-    private void FixedUpdate()
+    void Move()
     {
+        // move
         float moveInput = Input.GetAxisRaw("Horizontal");
-        float targetSpeed = moveInput * moveSpeed;
-        float speedDif = targetSpeed - rb.velocity.x;
-        float accelRate = Mathf.Abs(targetSpeed) > 0.01f ? acceleration : deceleration;
-
-        float movement = speedDif * accelRate;
-        rb.AddForce(movement * Vector2.right);
-
+        rb.transform.position += moveSpeed * Time.deltaTime * new Vector3(moveInput, 0);
         // flip
         if (moveInput < 0) spriteRd.flipX = true;
         else if (moveInput > 0) spriteRd.flipX = false;
@@ -80,7 +74,7 @@ public class PlayerManagement : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Ground"))
         {
-            rb.velocity = new Vector2(-GameManager.instance.speed, 0);
+            rb.velocity = new Vector2(-GameManager.Instance.speed, 0);
         }
     }
 }

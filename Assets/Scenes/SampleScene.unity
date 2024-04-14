@@ -316,7 +316,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PlayerState: 0
-  rg: {fileID: 0}
+  rb: {fileID: 0}
+  moveSpeed: 10
 --- !u!95 &873248038
 Animator:
   serializedVersion: 5
