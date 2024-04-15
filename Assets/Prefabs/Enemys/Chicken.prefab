@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6957076017949423088}
   - component: {fileID: 2054105541997329239}
   - component: {fileID: 8797854348884084588}
-  - component: {fileID: 4898881008725502649}
+  - component: {fileID: 4296899997269073515}
   m_Layer: 0
   m_Name: Chicken
   m_TagString: Untagged
@@ -171,7 +171,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &4898881008725502649
+--- !u!114 &4296899997269073515
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -180,6 +180,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 9121863503256982693}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0563a9a9e7e4e324cbb3d3db9e032580, type: 3}
+  m_Script: {fileID: 11500000, guid: 3c2b13c77c6ab1a4bbaff7165de23dcd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

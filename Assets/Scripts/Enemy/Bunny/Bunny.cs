@@ -1,8 +1,10 @@
 using UnityEngine;
 
-public class EnemyBunny : EnemyBase
+public class Bunny : EnemyBase
 {
     protected Animator ani;
+    [SerializeField] protected float jumpRaze = 2;
+    [SerializeField] protected float jumpTimer = 0;
     protected override void Start()
     {
         base.Start();
@@ -16,8 +18,6 @@ public class EnemyBunny : EnemyBase
         UpdateStateAndAnimation();
     }
 
-    float jumpRaze = 2;
-    float jumpTimer = 0;
     private void AutoJump()
     {
         jumpTimer += Time.deltaTime;

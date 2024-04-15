@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3923828156267974173}
   - component: {fileID: 1664804989780075940}
   - component: {fileID: 4874962631634223456}
-  - component: {fileID: 909467441440524643}
+  - component: {fileID: 1728453599021578279}
   m_Layer: 0
   m_Name: Bunny
   m_TagString: Enemy
@@ -181,7 +181,7 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &909467441440524643
+--- !u!114 &1728453599021578279
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -190,6 +190,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 5369457170958421581}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 75ae0097f08ff354db8dca5113c64b31, type: 3}
+  m_Script: {fileID: 11500000, guid: f4844c8618ee4324d811526fd5b4ddcf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
