@@ -15,12 +15,6 @@ public class EnemyManager : MonoBehaviour
         Debug.Log($"enemy count: {enemys.Count}");
     }
 
-    private void Start()
-    {
-
-    }
-
-    // Update is called once per frame
     void Update()
     {
         SpawnEnemy();

@@ -1,33 +1,31 @@
 using UnityEngine;
-
 public abstract class EnemyBase : MonoBehaviour
 {
-    protected Rigidbody2D rg;
-    protected CharState EnemyState = CharState.RUN;
-    protected float enemySpeed = 3;
+    public Rigidbody2D rb;
+    [SerializeField] protected float enemySpeed = 3;
+    protected GameManager gameManager = GameManager.Instance;
+
     protected virtual void Start()
     {
-        rg = GetComponent<Rigidbody2D>();
-        rg.velocity = Vector2.left * GameManager.Instance.speed;
+        rb = GetComponent<Rigidbody2D>();
+        rb.velocity = Vector2.left * gameManager.speed;
     }
 
-    // Update is called once per frame
     protected virtual void Update()
     {
         EnemyMove();
         DestroyByDis();
     }
+    protected virtual void FixedUpdate() { }
 
     protected virtual void EnemyMove()
     {
-        transform.position += (GameManager.Instance.speed + enemySpeed) * Time.deltaTime * Vector3.left;
+        rb.transform.position += (gameManager.speed + enemySpeed) * Time.deltaTime * Vector3.left;
     }
 
-    protected virtual void DestroyByDis()
+    public virtual void ResetPos(Vector3 newPos)
     {
-        if (transform.position.x < -20)
-        {
-            Destroy(gameObject);
-        }
+        rb.transform.position = newPos;
     }
+    protected abstract void DestroyByDis();
 }

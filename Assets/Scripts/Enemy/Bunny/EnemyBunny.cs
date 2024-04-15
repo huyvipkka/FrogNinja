@@ -3,6 +3,10 @@ using UnityEngine;
 public class EnemyBunny : EnemyBase
 {
     protected Animator ani;
+    [SerializeField] protected CharState EnemyState = CharState.IDLE;
+
+    [SerializeField] protected float jumpRaze = 2;
+    [SerializeField] protected float jumpTimer = 0;
     protected override void Start()
     {
         base.Start();
@@ -15,9 +19,6 @@ public class EnemyBunny : EnemyBase
         AutoJump();
         UpdateStateAndAnimation();
     }
-
-    float jumpRaze = 2;
-    float jumpTimer = 0;
     private void AutoJump()
     {
         jumpTimer += Time.deltaTime;
@@ -25,18 +26,23 @@ public class EnemyBunny : EnemyBase
         jumpTimer = 0;
 
         jumpRaze = Random.Range(1f, 3f);
-        rg.velocity = Vector2.up * 10;
+        rb.velocity = Vector2.up * 10;
     }
 
     private void UpdateStateAndAnimation()
     {
-        if (rg.velocity.y < 0)
+        if (rb.velocity.y < 0)
             EnemyState = CharState.FALL;
-        else if (rg.velocity.y > 0)
+        else if (rb.velocity.y > 0)
             EnemyState = CharState.JUMP;
         else
             EnemyState = CharState.RUN;
 
         ani.SetInteger("State", (int)EnemyState);
+    }
+
+    protected override void DestroyByDis()
+    {
+        BunnySpawner.Instance.pool.Release(this);
     }
 }
