@@ -25,14 +25,14 @@ public class EnemyBunny : EnemyBase
         jumpTimer = 0;
 
         jumpRaze = Random.Range(1f, 3f);
-        rg.velocity = Vector2.up * 10;
+        rb.velocity = Vector2.up * 10;
     }
 
     private void UpdateStateAndAnimation()
     {
-        if (rg.velocity.y < 0)
+        if (rb.velocity.y < 0)
             EnemyState = CharState.FALL;
-        else if (rg.velocity.y > 0)
+        else if (rb.velocity.y > 0)
             EnemyState = CharState.JUMP;
         else
             EnemyState = CharState.RUN;

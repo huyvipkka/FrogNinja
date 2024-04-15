@@ -2,19 +2,19 @@ using UnityEngine;
 
 public class TerrainMovement : MonoBehaviour
 {
-    protected Rigidbody2D rg;
+    protected Rigidbody2D rb;
     void Start()
     {
-        rg = GetComponent<Rigidbody2D>();
-        rg.velocity = Vector3.left * GameManager.Instance.speed;
+        rb = GetComponent<Rigidbody2D>();
+        rb.velocity = Vector3.left * GameManager.Instance.speed;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (rg.position.x <= -20)
+        if (rb.position.x <= -20)
         {
-            rg.position = new Vector2(20, 0);
+            rb.position = new Vector2(20, 0);
         }
     }
 }

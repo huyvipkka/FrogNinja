@@ -2,13 +2,13 @@ using UnityEngine;
 
 public abstract class EnemyBase : MonoBehaviour
 {
-    protected Rigidbody2D rg;
+    protected Rigidbody2D rb;
     protected CharState EnemyState = CharState.RUN;
     protected float enemySpeed = 3;
     protected virtual void Start()
     {
-        rg = GetComponent<Rigidbody2D>();
-        rg.velocity = Vector2.left * GameManager.Instance.speed;
+        rb = GetComponent<Rigidbody2D>();
+        rb.velocity = Vector2.left * GameManager.Instance.speed;
     }
 
     // Update is called once per frame
