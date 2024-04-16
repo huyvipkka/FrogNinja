@@ -17,6 +17,7 @@ public class GameManager : MonoBehaviour
         speed = 3;
     }
     public float speed = 3;
+    public readonly float gravityScale = 5;
     //GameState gameState = GameState.PLAY;
 
 }

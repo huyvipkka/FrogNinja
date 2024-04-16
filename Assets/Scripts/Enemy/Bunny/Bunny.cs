@@ -2,10 +2,8 @@ using UnityEngine;
 
 public class Bunny : EnemyBase
 {
-    protected Animator ani;
     [SerializeField] protected float jumpRaze = 2;
     [SerializeField] protected float jumpTimer = 0;
-    protected CharState EnemyState = CharState.RUN;
     protected override void Start()
     {
         base.Start();
@@ -15,8 +13,11 @@ public class Bunny : EnemyBase
     protected override void Update()
     {
         base.Update();
-        AutoJump();
-        UpdateStateAndAnimation();
+        if (!isDie)
+        {
+            AutoJump();
+            UpdateStateAndAnimation();
+        }
     }
 
     private void AutoJump()
@@ -26,18 +27,18 @@ public class Bunny : EnemyBase
         jumpTimer = 0;
 
         jumpRaze = Random.Range(1f, 3f);
-        rb.velocity = Vector2.up * 10;
+        rb.AddForce(Vector2.up * 20, ForceMode2D.Impulse);
     }
 
     private void UpdateStateAndAnimation()
     {
         if (rb.velocity.y < 0)
-            EnemyState = CharState.FALL;
+            enemyState = CharState.FALL;
         else if (rb.velocity.y > 0)
-            EnemyState = CharState.JUMP;
+            enemyState = CharState.JUMP;
         else
-            EnemyState = CharState.RUN;
+            enemyState = CharState.RUN;
 
-        ani.SetInteger("State", (int)EnemyState);
+        ani.SetInteger("State", (int)enemyState);
     }
 }

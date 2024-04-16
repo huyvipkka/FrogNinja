@@ -52,7 +52,6 @@ public class PlayerManagement : MonoBehaviour
         && PlayerState != CharState.FALL)
         {
             rb.AddForce(Vector2.up * jumpHigh, ForceMode2D.Impulse);
-            Debug.Log("Player jump");
         }
     }
 

@@ -23,7 +23,7 @@ public class EnemySpawner : MonoBehaviour
     {
         if (obj.TryGetComponent(out EnemyBase enemy))
         {
-            enemy.ResetPos(transform.position);
+            enemy.ResetNewEnemy(transform.position);
         }
         obj.transform.parent = transform;
         obj.SetActive(true);
@@ -54,7 +54,7 @@ public class EnemySpawner : MonoBehaviour
         GameObject enemyClone = pools[index].Get();
         if (enemyClone.TryGetComponent(out EnemyBase enemy))
         {
-            enemy.refPool = pools[index];
+            enemy.refPool ??= pools[index];
         }
     }
 }
