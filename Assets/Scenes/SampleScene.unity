@@ -267,7 +267,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!70 &873248036
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -444,7 +444,7 @@ GameObject:
   - component: {fileID: 926038286}
   - component: {fileID: 926038287}
   m_Layer: 0
-  m_Name: Enemys
+  m_Name: EnemySpawner
   m_TagString: Untagged
   m_Icon: {fileID: 7250588514170254948, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -476,10 +476,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 926038285}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 873185cd57345da4f85ce887ba2c1933, type: 3}
+  m_Script: {fileID: 11500000, guid: 1779645634368134282de5bbbb398f45, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemys: []
+  enemyPrefabs:
+  - {fileID: 5369457170958421581, guid: 6c563717e050d7847aae38636387c99a, type: 3}
+  - {fileID: 9121863503256982693, guid: 734c71cc28c61f9488a39c4aa95834be, type: 3}
+  spawnRaze: 1
 --- !u!1 &1225787331
 GameObject:
   m_ObjectHideFlags: 0
