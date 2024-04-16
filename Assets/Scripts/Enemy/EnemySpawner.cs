@@ -3,38 +3,35 @@ using UnityEngine;
 using UnityEngine.Pool;
 public class EnemySpawner : MonoBehaviour
 {
-    [SerializeField] GameObject[] enemyPrefabs;
+    [SerializeField] EnemyBase[] enemyPrefabs;
     [SerializeField] float spawnRaze = 1;
-    List<ObjectPool<GameObject>> pools;
+    List<ObjectPool<EnemyBase>> pools;
     float spawnTimer = 0;
     private void Awake()
     {
-        pools = new List<ObjectPool<GameObject>>();
-        foreach (GameObject prefab in enemyPrefabs)
+        pools = new List<ObjectPool<EnemyBase>>();
+        foreach (EnemyBase prefab in enemyPrefabs)
         {
-            ObjectPool<GameObject> pool = new(() => Instantiate(prefab),
+            ObjectPool<EnemyBase> pool = new(() => Instantiate(prefab),
                 ActionOnGet, ActionOnRelease, ActionOnDestroy,
                 collectionCheck: true, defaultCapacity: 100, maxSize: 1000);
             pools.Add(pool);
         }
     }
 
-    private void ActionOnGet(GameObject obj)
+    private void ActionOnGet(EnemyBase obj)
     {
-        if (obj.TryGetComponent(out EnemyBase enemy))
-        {
-            enemy.ResetNewEnemy(transform.position);
-        }
+        obj.ResetNewEnemy(transform.position);
         obj.transform.parent = transform;
-        obj.SetActive(true);
+        obj.gameObject.SetActive(true);
     }
 
-    private void ActionOnRelease(GameObject obj)
+    private void ActionOnRelease(EnemyBase obj)
     {
-        obj.SetActive(false);
+        obj.gameObject.SetActive(false);
     }
 
-    private void ActionOnDestroy(GameObject obj)
+    private void ActionOnDestroy(EnemyBase obj)
     {
         Destroy(obj);
     }
@@ -51,10 +48,7 @@ public class EnemySpawner : MonoBehaviour
         spawnTimer = 0;
 
         int index = Random.Range(0, pools.Count);
-        GameObject enemyClone = pools[index].Get();
-        if (enemyClone.TryGetComponent(out EnemyBase enemy))
-        {
-            enemy.refPool ??= pools[index];
-        }
+        EnemyBase enemyClone = pools[index].Get();
+        enemyClone.refPool ??= pools[index];
     }
 }

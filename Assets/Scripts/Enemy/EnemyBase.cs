@@ -7,7 +7,7 @@ public abstract class EnemyBase : MonoBehaviour
     protected Rigidbody2D rb;
     protected float enemySpeed = 3;
     protected CharState enemyState = CharState.RUN;
-    public ObjectPool<GameObject> refPool;
+    public ObjectPool<EnemyBase> refPool;
     protected Animator ani;
     protected Collider2D colli;
     protected GameManager gameManager = GameManager.Instance;
@@ -40,7 +40,7 @@ public abstract class EnemyBase : MonoBehaviour
     {
         if (transform.position.x < -20)
         {
-            refPool.Release(gameObject);
+            refPool.Release(this);
             isDie = true;
         }
     }
@@ -70,6 +70,6 @@ public abstract class EnemyBase : MonoBehaviour
     private IEnumerator ReleaseObjectAfterDelay(float delay)
     {
         yield return new WaitForSeconds(delay);
-        refPool.Release(gameObject);
+        refPool.Release(this);
     }
 }
