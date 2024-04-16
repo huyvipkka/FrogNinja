@@ -1,10 +1,11 @@
 using UnityEngine;
+using UnityEngine.Pool;
 
 public abstract class EnemyBase : MonoBehaviour
 {
     protected Rigidbody2D rb;
-    protected CharState EnemyState = CharState.RUN;
     protected float enemySpeed = 3;
+    public ObjectPool<GameObject> refPool;
     protected virtual void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -27,7 +28,12 @@ public abstract class EnemyBase : MonoBehaviour
     {
         if (transform.position.x < -20)
         {
-            Destroy(gameObject);
+            refPool.Release(gameObject);
         }
+    }
+
+    public virtual void ResetPos(Vector3 pos)
+    {
+        transform.position = pos;
     }
 }

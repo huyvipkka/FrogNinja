@@ -5,6 +5,7 @@ public class Bunny : EnemyBase
     protected Animator ani;
     [SerializeField] protected float jumpRaze = 2;
     [SerializeField] protected float jumpTimer = 0;
+    protected CharState EnemyState = CharState.RUN;
     protected override void Start()
     {
         base.Start();
