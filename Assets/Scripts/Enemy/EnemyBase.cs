@@ -17,7 +17,7 @@ public abstract class EnemyBase : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         ani = GetComponent<Animator>();
         colli = GetComponent<Collider2D>();
-        rb.velocity = Vector2.left * gameManager.speed;
+        rb.velocity = Vector2.left * 4;
         rb.gravityScale = gameManager.gravityScale;
     }
 
@@ -33,7 +33,7 @@ public abstract class EnemyBase : MonoBehaviour
 
     protected virtual void EnemyMove()
     {
-        transform.position += (GameManager.Instance.speed + enemySpeed) * Time.deltaTime * Vector3.left;
+        transform.position += enemySpeed * Time.deltaTime * Vector3.left;
     }
 
     protected virtual void DestroyByDis()

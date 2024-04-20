@@ -3,6 +3,9 @@ using UnityEngine;
 public class PlayerManagement : MonoBehaviour
 {
     public static PlayerManagement Instance { get; private set; }
+    public float acceleration = 10;
+    public float deceleration = 3;
+
     public CharState PlayerState = CharState.RUN;
     public Rigidbody2D rb;
     protected Animator ani;
@@ -10,7 +13,7 @@ public class PlayerManagement : MonoBehaviour
     [SerializeField] protected float moveSpeed = 10;
     [Header("Jumpping")]
     readonly float jumpHigh = 15;
-
+    float moveInput;
     protected SpriteRenderer spriteRd;
     private void Awake()
     {
@@ -32,15 +35,22 @@ public class PlayerManagement : MonoBehaviour
     void Update()
     {
         Jump();
-        Move();
+        Flip();
         UpdateStateAndAnimation();
+        moveInput = Input.GetAxisRaw("Horizontal");
     }
-    void Move()
+
+    private void FixedUpdate()
     {
-        // move
-        float moveInput = Input.GetAxisRaw("Horizontal");
-        rb.transform.position += moveSpeed * Time.deltaTime * new Vector3(moveInput, 0);
-        // flip
+        float targetSpeed = moveInput * moveSpeed;
+        float speedDif = targetSpeed - rb.velocity.x;
+        float accelRate = Mathf.Abs(targetSpeed) > 0.1f ? acceleration : deceleration;
+
+        float movement = speedDif * accelRate;
+        rb.AddForce(movement * Vector2.right);
+    }
+    void Flip()
+    {
         if (moveInput < 0) spriteRd.flipX = true;
         else if (moveInput > 0) spriteRd.flipX = false;
     }
@@ -67,13 +77,5 @@ public class PlayerManagement : MonoBehaviour
             PlayerState = CharState.RUN;
 
         ani.SetInteger("State", (int)PlayerState);
-    }
-
-    private void OnCollisionStay2D(Collision2D other)
-    {
-        if (other.gameObject.CompareTag("Ground"))
-        {
-            rb.velocity = new Vector2(-GameManager.Instance.speed, 0);
-        }
     }
 }

@@ -315,6 +315,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1a1c2cfbd0244b4fab2575686a994d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  acceleration: 10
+  deceleration: 3
   PlayerState: 0
   rb: {fileID: 0}
   moveSpeed: 10
@@ -449,7 +451,7 @@ GameObject:
   m_Icon: {fileID: 7250588514170254948, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &926038286
 Transform:
   m_ObjectHideFlags: 0
@@ -478,8 +480,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyPrefabs:
-  - {fileID: 5369457170958421581, guid: 6c563717e050d7847aae38636387c99a, type: 3}
-  - {fileID: 9121863503256982693, guid: 734c71cc28c61f9488a39c4aa95834be, type: 3}
+  - {fileID: 1728453599021578279, guid: 6c563717e050d7847aae38636387c99a, type: 3}
+  - {fileID: 4296899997269073515, guid: 734c71cc28c61f9488a39c4aa95834be, type: 3}
   spawnRaze: 1
 --- !u!1 &1225787331
 GameObject:
@@ -16507,6 +16509,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1957192486}
   - component: {fileID: 1957192487}
+  - component: {fileID: 1957192488}
   m_Layer: 0
   m_Name: Ground
   m_TagString: Ground
@@ -16561,7 +16564,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -3.4}
+  m_Offset: {x: 0, y: -3.3720284}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -16572,8 +16575,20 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 70, y: 0.7}
+  m_Size: {x: 70, y: 0.75594306}
   m_EdgeRadius: 0
+--- !u!114 &1957192488
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1957192485}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3eb38048319877418c9cfef42eb9ce9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2032923012
 GameObject:
   m_ObjectHideFlags: 0
@@ -16616,7 +16631,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2032923012}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d129f2784816ffa41918aa87b1e84834, type: 3}
   m_Name: 
@@ -18895,7 +18910,7 @@ Rigidbody2D:
     m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 6
 --- !u!1 &2102084418
 GameObject:
